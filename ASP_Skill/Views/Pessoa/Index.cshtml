@@ -13,7 +13,7 @@
         <h1>Lista de Pessoas</h1>
         <div class="mb-3">
             <button class="btn btn-warning" id="btnToggle">Dados</button>
-            <button class="btn btn-primary" id="btnAdd">Adicionar Pessoa</button>
+            <a href="Cadastrar"><button class="btn btn-primary">Cadastrar</button></a>
         </div>
         <table class="table mt-3" id="tabelaPessoas">
             <thead>
@@ -74,30 +74,9 @@
                 $("#tabelaPessoas").html(data);
             });
 
-            // Abrir modal ao clicar em "Adicionar Pessoa"
-            $("#btnAdd").click(function () {
-                $("#modalAdicionarPessoa").modal("show");
-            });
-
             // Toggle da tabela ao clicar em "Dados"
             $("#btnToggle").click(function () {
                 $("#tabelaPessoas").fadeToggle();
-            });
-
-            // Enviar dados do formulário via AJAX ao clicar em "Salvar"
-            $("#btnSalvar").click(function () {
-                $.ajax({
-                    type: "POST",
-                    url: "/Pessoa/Create",
-                    data: $("#formAdicionarPessoa").serialize(),
-                    success: function () {
-                        // Recarregar a tabela após adicionar pessoa
-                        $.get("/Pessoa/GetPessoas", function (data) {
-                            $("#tabelaPessoas").html(data);
-                            $("#modalAdicionarPessoa").modal("hide");
-                        });
-                    }
-                });
             });
         });
 

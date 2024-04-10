@@ -147,6 +147,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Conexao.cs" />
     <Compile Include="Models\Pessoa.cs" />
+    <Compile Include="Models\PessoaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

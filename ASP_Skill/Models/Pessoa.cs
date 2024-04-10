@@ -7,8 +7,6 @@ namespace ASP_Skill.Models
     [Table("Pessoa")]
     public class Pessoa
     {
-        //TODO
-        // Atributos
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

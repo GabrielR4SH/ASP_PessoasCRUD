@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ASP_Skill.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,5 +17,30 @@ namespace ASP_Skill.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult CadastrarPessoa(PessoaViewModel data)
+        {
+            using (Conexao db = new Conexao())
+            {
+                Pessoa model = new Pessoa();
+                foreach (var property in typeof(PessoaViewModel).GetProperties())
+                {
+                    var value = property.GetValue(data);
+                    var modelProperty = typeof(Pessoa).GetProperty(property.Name);
+                    if (modelProperty != null && value != null)
+                    {
+                        modelProperty.SetValue(model, value);
+                    }
+                }
+
+                // Salvar o modelo no banco de dados
+                db.Pessoa.Add(model);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
     }
 }
